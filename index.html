@@ -512,17 +512,18 @@ strong{color:var(--tinta)}
 }
 @media (max-width:640px){
   body{font-size:16.5px}
-  .container{padding:0 20px}
-  .section{padding:64px 0}
-  .section--tight{padding:48px 0}
+  .container{padding:0 28px}
+  .section{padding:72px 0}
+  .section--tight{padding:56px 0}
+  .page-hero{padding:84px 0 28px}
   .hero__in{padding:40px 0 56px;gap:28px}
   .hero h1{font-size:clamp(2.2rem,8vw,2.8rem);margin-bottom:16px}
-  .hero .lede{font-size:1.02rem;margin-bottom:24px}
-  .hero__cta{gap:12px}
+  .hero .lede{font-size:1.02rem;margin-bottom:24px;max-width:100%}
+  .hero__cta{display:flex;flex-direction:column;align-items:stretch;gap:12px}
   .hero__meta{margin-top:24px;font-size:.69rem;gap:8px}
-  .nav{padding:16px 20px 20px}
+  .nav{padding:16px 28px 20px}
   .nav .btn{margin:12px 0 0}
-  .hero__cta .btn{margin:0 0 0 0}
+  .hero__cta .btn{margin:0;flex:0 0 auto;width:auto;max-width:100%;align-self:flex-start;padding:14px 24px}
   .grid-3,.grid-2,.steps,.media-grid{grid-template-columns:1fr}
   .trust__in{flex-direction:column;text-align:center;gap:16px;justify-content:center}
   .trust__logos{justify-content:center;gap:16px}
@@ -536,7 +537,6 @@ strong{color:var(--tinta)}
   .retrato__badge{left:10px;bottom:-12px;max-width:150px;padding:10px 12px}
   .retrato__badge strong{font-size:.9rem}
   .retrato__badge span{font-size:.72rem}
-  .hero__cta .btn{flex:1 1 100%;width:100%;padding-left:24px;padding-right:24px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
