@@ -82,7 +82,7 @@ strong{color:var(--tinta)}
 .skip{position:absolute;left:-999px;top:10px;background:var(--tinta);color:var(--cal);padding:10px 16px;border-radius:8px;z-index:99}
 .skip:focus{left:10px}
 
-.site-lock{position:fixed;inset:0;z-index:9999;background:rgba(245,241,231,.98);display:grid;place-items:center;padding:24px}
+.site-lock{position:fixed;inset:0;z-index:9999;background:#fff;display:grid;place-items:center;padding:24px}
 .site-lock__card{width:min(100%,420px);background:var(--cal);border:1px solid var(--linea);border-radius:24px;padding:32px;box-shadow:var(--sombra)}
 .site-lock__card h2{margin-bottom:10px;font-size:1.7rem}
 .site-lock__card p{margin-bottom:16px}
@@ -1484,8 +1484,11 @@ strong{color:var(--tinta)}
   const input = document.getElementById('sitePassword');
   const error = document.getElementById('siteLockError');
   const correctPassword = '40';
+  const defaultTitle = document.title;
 
   if (!lock || !form || !input || !error) return;
+
+  document.title = 'Acceso restringido';
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -1493,6 +1496,7 @@ strong{color:var(--tinta)}
       lock.hidden = true;
       input.value = '';
       error.textContent = '';
+      document.title = defaultTitle;
     } else {
       error.textContent = 'Contraseña incorrecta.';
       input.value = '';
