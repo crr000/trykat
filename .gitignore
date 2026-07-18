@@ -6,3 +6,6 @@
 
 credentials.txt
 secrets/
+
+# Local Netlify folder
+.netlify
