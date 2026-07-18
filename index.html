@@ -213,7 +213,7 @@ strong{color:var(--tinta)}
 .hero__meta::before{content:"";width:34px;height:2px;background:var(--teja)}
 
 /* Retrato: marco editorial con contorno desplazado */
-.retrato{position:relative}
+.retrato{position:relative;width:min(100%, 420px);margin:0 auto}
 .retrato .ph{
   border-radius:26px;overflow:hidden;aspect-ratio:4/5;
   background:linear-gradient(160deg,var(--arena),#DDD6C4);position:relative;
@@ -224,7 +224,7 @@ strong{color:var(--tinta)}
   top:20px;left:20px;right:-20px;bottom:-20px;
   border:2px solid var(--teja);border-radius:26px;opacity:.55;pointer-events:none;
 }
-.ph img{width:100%;height:100%;object-fit:cover}
+.ph img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
 .ph.img-fallback::after{
   content:"☼";position:absolute;inset:0;display:grid;place-items:center;
   font-size:3.2rem;color:var(--cal);
@@ -240,12 +240,12 @@ strong{color:var(--tinta)}
   background-position:center;
 }
 .retrato__badge{
-  position:absolute;left:-22px;bottom:28px;max-width:210px;z-index:1;
-  background:var(--cal);border:1px solid var(--linea);border-radius:16px;
-  padding:15px 19px;box-shadow:var(--sombra);
+  position:absolute;left:-16px;bottom:22px;max-width:180px;z-index:1;
+  background:var(--cal);border:1px solid var(--linea);border-radius:14px;
+  padding:10px 13px;box-shadow:var(--sombra);
 }
-.retrato__badge strong{display:block;font-family:var(--display);font-weight:600;font-size:1.05rem;color:var(--tinta)}
-.retrato__badge span{display:block;font-family:var(--sans);font-weight:400;font-size:.8rem;color:var(--tinta2);margin-top:3px}
+.retrato__badge strong{display:block;font-family:var(--display);font-weight:600;font-size:.95rem;color:var(--tinta)}
+.retrato__badge span{display:block;font-family:var(--sans);font-weight:400;font-size:.72rem;color:var(--tinta2);margin-top:2px}
 
 /* ================= TRUST ================= */
 .trust{padding:26px 0;background:var(--arena);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
@@ -493,7 +493,7 @@ strong{color:var(--tinta)}
   .section{padding:92px 0}
   .section--tight{padding:64px 0}
   .page-hero{padding:80px 0 32px}
-  .retrato{max-width:440px;margin:0 auto}
+  .retrato{max-width:440px}
   .footer__grid{grid-template-columns:1fr 1fr}
   .nav{
     position:absolute;top:74px;left:0;right:0;
@@ -510,21 +510,28 @@ strong{color:var(--tinta)}
 }
 @media (max-width:640px){
   body{font-size:16.5px}
-  .section{padding:76px 0}
-  .section--tight{padding:56px 0}
-  .hero__in{padding:56px 0 72px;gap:56px}
+  .container{padding:0 18px}
+  .section{padding:64px 0}
+  .section--tight{padding:48px 0}
+  .hero__in{padding:40px 0 56px;gap:28px}
+  .hero h1{font-size:clamp(2.2rem,8vw,2.8rem);margin-bottom:16px}
+  .hero .lede{font-size:1.02rem;margin-bottom:24px}
+  .hero__cta{gap:12px}
+  .hero__meta{margin-top:24px;font-size:.69rem;gap:8px}
   .grid-3,.grid-2,.steps,.media-grid{grid-template-columns:1fr}
   .trust__in{flex-direction:column;text-align:center;gap:16px;justify-content:center}
-  .trust__logos{justify-content:center}
+  .trust__logos{justify-content:center;gap:16px}
   .cta-band__in{flex-direction:column;align-items:flex-start;padding:56px 0}
   .form-card{padding:28px 22px}
   .contact-card{padding:28px 22px}
   .form-ok{padding:32px 22px}
   .footer__grid{grid-template-columns:1fr}
-  .retrato::before{top:12px;left:12px;right:-12px;bottom:-12px}
-  .retrato__badge{left:12px;bottom:-18px;max-width:170px;padding:12px 15px}
-  .retrato__badge strong{font-size:.95rem}
-  .hero__cta .btn{flex:1 1 100%}
+  .retrato{width:min(100%, 280px);max-width:280px}
+  .retrato::before{top:10px;left:10px;right:-10px;bottom:-10px}
+  .retrato__badge{left:10px;bottom:-12px;max-width:150px;padding:10px 12px}
+  .retrato__badge strong{font-size:.9rem}
+  .retrato__badge span{font-size:.72rem}
+  .hero__cta .btn{flex:1 1 100%;width:100%}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -572,9 +579,9 @@ strong{color:var(--tinta)}
   <div class="hero">
     <div class="container hero__in">
       <div>
-        <p class="eyebrow reveal">Farmacéuticaa · Especialista en salud capilar</p>
-        <h1 class="reveal" style="--d:.10s">Tu cabello,<br>con mucho <span class="acento">criterio</span></h1>
-        <p class="lede reveal" style="--d:.20s">Farmacéutica especializada en salud capilar. Consejos con base científica, sin productos milagro.</p>
+        <p class="eyebrow reveal">Farmacéutica · Especialista en salud capilar</p>
+        <h1 class="reveal" style="--d:.10s">Tu cabello,<br>con <span class="acento">criterio</span></h1>
+        <p class="lede reveal" style="--d:.20s">Farmacéutica especializada en salud capilar. Consejos con base científica y enfoque práctico.</p>
         <div class="hero__cta reveal" style="--d:.30s">
           <a href="#/en-los-medios" class="btn btn--solid">Descubre mis consejos</a>
           <a href="#/sobre-mi" class="btn btn--ghost">Conóceme</a>
@@ -582,9 +589,11 @@ strong{color:var(--tinta)}
         <p class="hero__meta reveal" style="--d:.40s">Divulgación · Asesoría · Medios nacionales</p>
       </div>
       <div class="retrato reveal" style="--d:.24s">
-        <div class="ph ph--foto" role="img" aria-label="Katrina Riera, farmacéutica experta en salud capilar"></div>
+        <div class="ph ph--foto" role="img" aria-label="Katrina Riera, farmacéutica experta en salud capilar">
+          <img src="17774555230792.jpg" alt="Katrina Riera, farmacéutica experta en salud capilar" loading="eager" decoding="async">
+        </div>
         <div class="retrato__badge">
-          <strong>Katrina Rieraa</strong>
+          <strong>Katrina Riera</strong>
           <span>Farmacéutica · Salud capilar</span>
         </div>
       </div>
@@ -596,9 +605,10 @@ strong{color:var(--tinta)}
     <div class="container trust__in">
       <span class="trust__label">Colaboradora habitual en</span>
       <div class="trust__logos" role="list" aria-label="Medios en los que ha colaborado">
-        <span class="wm wm--trend" role="listitem" title="Trendencias">trendencias</span>
-        <span class="wm wm--telva" role="listitem" title="Telva">TELVA</span>
+
         <span class="wm wm--hola" role="listitem" title="¡Hola!">¡HOLA!</span>
+        <span class="wm wm--telva" role="listitem" title="Telva">TELVA</span>
+        <span class="wm wm--trend" role="listitem" title="Trendencias">trendencias</span>
         <span class="wm wm--leon" role="listitem" title="Diario de León">Diario de León</span>
       </div>
     </div>
@@ -624,7 +634,7 @@ strong{color:var(--tinta)}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 4.6L18 9.5l-4.1 1.9L12 16l-1.9-4.6L6 9.5l4.1-1.9z"/><path d="M4 4l16 16"/></svg>
           </div>
           <h3>Sin productos <span class="tachado">milagro</span></h3>
-          <p>Si algo no tiene respaldo, te lo digo claro. La honestidad también forma parte del cuidado del cabello.</p>
+          <p>Si algo no tiene respaldo, te lo digo claro. La honestidad forma parte del cuidado del cabello.</p>
         </div>
         <div class="benefit reveal" style="--d:.16s">
           <div class="benefit__ico">
