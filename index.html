@@ -82,6 +82,14 @@ strong{color:var(--tinta)}
 .skip{position:absolute;left:-999px;top:10px;background:var(--tinta);color:var(--cal);padding:10px 16px;border-radius:8px;z-index:99}
 .skip:focus{left:10px}
 
+.site-lock{position:fixed;inset:0;z-index:9999;background:rgba(245,241,231,.98);display:grid;place-items:center;padding:24px}
+.site-lock__card{width:min(100%,420px);background:var(--cal);border:1px solid var(--linea);border-radius:24px;padding:32px;box-shadow:var(--sombra)}
+.site-lock__card h2{margin-bottom:10px;font-size:1.7rem}
+.site-lock__card p{margin-bottom:16px}
+.site-lock__form{display:flex;flex-direction:column;gap:12px}
+.site-lock__form input{width:100%;padding:14px 16px;border:1px solid var(--linea);border-radius:999px;font:inherit;color:var(--tinta);background:#fff}
+.site-lock__error{min-height:1.2em;margin-top:10px;color:var(--error);font-size:.95rem}
+
 .container{max-width:var(--container);margin:0 auto;padding:0 24px}
 .section{padding:120px 0}
 .section--tight{padding:80px 0}
@@ -128,6 +136,8 @@ strong{color:var(--tinta)}
 .btn[disabled]{opacity:.6;cursor:default;transform:none;box-shadow:none}
 .btn--solid{background:var(--teja);color:#fff;box-shadow:0 2px 8px rgba(30,58,120,.18)}
 .btn--solid:hover{background:var(--teja-osc);color:#fff;box-shadow:0 14px 30px rgba(30,58,120,.32)}
+.btn--accent{background:#2F5D50;color:#fff;box-shadow:0 2px 8px rgba(47,93,80,.22)}
+.btn--accent:hover{background:#22463D;color:#fff;box-shadow:0 14px 30px rgba(47,93,80,.28)}
 .btn--ghost{border-color:var(--tinta);color:var(--tinta);background:transparent}
 .btn--ghost:hover{background:var(--tinta);color:var(--cal);box-shadow:0 14px 30px rgba(20,28,52,.20)}
 .btn--cal{background:var(--cal);color:var(--mar-osc)}
@@ -544,6 +554,19 @@ strong{color:var(--tinta)}
 </style>
 </head>
 <body>
+<div class="site-lock" id="siteLock" role="dialog" aria-modal="true" aria-labelledby="siteLockTitle">
+  <div class="site-lock__card">
+    <p class="eyebrow">Acceso restringido</p>
+    <h2 id="siteLockTitle">Introduce la contraseña</h2>
+    <p>Esta web está protegida con una contraseña temporal.</p>
+    <form class="site-lock__form" id="siteLockForm">
+      <label class="sr-only" for="sitePassword">Contraseña</label>
+      <input id="sitePassword" name="password" type="password" placeholder="Contraseña" autocomplete="current-password">
+      <button type="submit" class="btn btn--accent btn--sm">Entrar</button>
+    </form>
+    <p class="site-lock__error" id="siteLockError" role="alert"></p>
+  </div>
+</div>
 <a class="skip" href="#main">Ir al contenido</a>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
@@ -559,7 +582,7 @@ strong{color:var(--tinta)}
       <a href="#/sobre-mi" data-route="sobre-mi">Sobre mí</a>
       <a href="#/servicios" data-route="servicios">Servicios</a>
       <a href="#/en-los-medios" data-route="en-los-medios">En los medios</a>
-      <a href="#/contacto" data-route="contacto" class="btn btn--solid btn--sm">Escríbeme</a>
+      <a href="#/contacto" data-route="contacto" class="btn btn--accent btn--sm">Escríbeme</a>
     </nav>
     <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
       <svg class="ico-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -1452,6 +1475,30 @@ strong{color:var(--tinta)}
   document.getElementById('year').textContent = String(new Date().getFullYear());
 
   render();
+})();
+</script>
+<script>
+(() => {
+  const lock = document.getElementById('siteLock');
+  const form = document.getElementById('siteLockForm');
+  const input = document.getElementById('sitePassword');
+  const error = document.getElementById('siteLockError');
+  const correctPassword = '40';
+
+  if (!lock || !form || !input || !error) return;
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (input.value === correctPassword) {
+      lock.hidden = true;
+      input.value = '';
+      error.textContent = '';
+    } else {
+      error.textContent = 'Contraseña incorrecta.';
+      input.value = '';
+      input.focus();
+    }
+  });
 })();
 </script>
 </body>
